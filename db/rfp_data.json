@@ -1,0 +1,602 @@
+[
+  {
+    "section_num": 1,
+    "section_title": "Company & Vendor Overview",
+    "questions": [
+      {
+        "num": "1.01",
+        "priority": "HIGH",
+        "text": "Provide company history including: year founded, headquarters location, ownership structure (public/private/PE-backed), number of employees, and annual revenue range."
+      },
+      {
+        "num": "1.02",
+        "priority": "MEDIUM",
+        "text": "How many active ICM customers do you currently serve? Provide breakdown by: company size (SMB/Mid-Market/Enterprise/Public), industry verticals, and geographic regions."
+      },
+      {
+        "num": "1.03",
+        "priority": "HIGH",
+        "text": "Provide 3 customer references from companies similar to SelectQuote in size, complexity, or industry. Include: company name, contact information, implementation date, plan complexity overview, and current user count."
+      },
+      {
+        "num": "1.04",
+        "priority": "HIGH",
+        "text": "Describe a success story where a customer replaced a legacy or high-risk ICM system with your solution. What were their pain points and measurable outcomes achieved?"
+      },
+      {
+        "num": "1.05",
+        "priority": "HIGH",
+        "text": "What percentage of your annual revenue is invested in R&D? How many engineers are dedicated to the ICM product?"
+      },
+      {
+        "num": "1.06",
+        "priority": "HIGH",
+        "text": "Describe your product vision and strategic roadmap for the next 24 months. What major capabilities are planned or in development?"
+      },
+      {
+        "num": "1.07",
+        "priority": "MEDIUM",
+        "text": "What is your typical release cadence? How do you communicate and deploy updates to customers?"
+      },
+      {
+        "num": "1.08",
+        "priority": "HIGH",
+        "text": "Have any customers churned in the past 24 months? What were the primary reasons for departure?"
+      },
+      {
+        "num": "1.09",
+        "priority": "HIGH",
+        "text": "What industry recognitions, analyst rankings, or certifications has your company earned?"
+      },
+      {
+        "num": "1.10",
+        "priority": "MEDIUM",
+        "text": "Describe any recent or planned mergers, acquisitions, or significant organizational changes that could impact product development or customer support."
+      },
+      {
+        "num": "1.11",
+        "priority": "MEDIUM",
+        "text": "What is your average customer tenure?"
+      }
+    ]
+  },
+  {
+    "section_num": 2,
+    "section_title": "Security & Compliance",
+    "questions": [
+      {
+        "num": "2.01",
+        "priority": "CRITICAL",
+        "text": "What authentication mechanisms does your solution support? (SSO - Google Authentication) Describe implementation requirements."
+      },
+      {
+        "num": "2.02",
+        "priority": "CRITICAL",
+        "text": "Describe your role-based access control model. Can permissions be configured at the object, field, and record level?"
+      },
+      {
+        "num": "2.03",
+        "priority": "CRITICAL",
+        "text": "How does your solution enforce segregation of duties for system administration, calculation configuration, and data management?"
+      },
+      {
+        "num": "2.04",
+        "priority": "CRITICAL",
+        "text": "Describe your user provisioning and de-provisioning processes. What automation or integration options exist with identity management systems?"
+      },
+      {
+        "num": "2.05",
+        "priority": "CRITICAL",
+        "text": "Describe your data encryption approach: Encryption at rest (algorithms, key management), Encryption in transit (protocols, certificate management), Database-level encryption capabilities"
+      },
+      {
+        "num": "2.06",
+        "priority": "HIGH",
+        "text": "How do you handle data masking or anonymization for non-production environments?"
+      },
+      {
+        "num": "2.07",
+        "priority": "HIGH",
+        "text": "What controls prevent unauthorized data export or exfiltration?"
+      },
+      {
+        "num": "2.08",
+        "priority": "CRITICAL",
+        "text": "Describe your audit logging capabilities: What activities are logged? (system access, configuration changes, data modifications, calculation runs, what reports are being accessed, and by whom) How long are logs retained? What search and reporting capabilities exist for audit logs?"
+      },
+      {
+        "num": "2.09",
+        "priority": "CRITICAL",
+        "text": "How does your solution support SOX compliance requirements specifically for: Change control and approval workflows, Audit trails for calculation logic changes, Segregation of duties in financial calculations, Testing and validation before production deployment"
+      },
+      {
+        "num": "2.10",
+        "priority": "CRITICAL",
+        "text": "What certifications does your solution hold? (SOC 2 Type II, ISO 27001, PCI DSS, GDPR, etc.) Provide copies of current certification reports."
+      },
+      {
+        "num": "2.11",
+        "priority": "CRITICAL",
+        "text": "How does your solution enforce segregation of duties across the plan lifecycle? Can you separate responsibilities between: plan design/approval, plan configuration/build, testing/validation, and production deployment?"
+      },
+      {
+        "num": "2.12",
+        "priority": "MEDIUM",
+        "text": "How do you maintain compliance with GDPR and other data privacy regulations? What data subject rights are supported (access, deletion, portability)?"
+      },
+      {
+        "num": "2.13",
+        "priority": "HIGH",
+        "text": "Describe your data retention and deletion policies. Can retention rules be customized by data type?"
+      },
+      {
+        "num": "2.14",
+        "priority": "CRITICAL",
+        "text": "How many environments are included in standard licensing? (Development, Test, UAT, Production, etc.)"
+      },
+      {
+        "num": "2.15",
+        "priority": "HIGH",
+        "text": "Describe your deployment pipeline and change promotion process: How are configuration changes moved between environments? What approval gates exist before production deployment? How are changes version-controlled and tracked?"
+      },
+      {
+        "num": "2.16",
+        "priority": "CRITICAL",
+        "text": "What controls prevent unauthorized changes from bypassing testing environments and going directly to production?"
+      },
+      {
+        "num": "2.17",
+        "priority": "HIGH",
+        "text": "Can business users make configuration changes in non-production environments for testing? What guardrails exist?"
+      },
+      {
+        "num": "2.18",
+        "priority": "CRITICAL",
+        "text": "Describe your release management and communication process. How far in advance are customers notified of upcoming releases? What information is provided in release notes?"
+      },
+      {
+        "num": "2.19",
+        "priority": "HIGH",
+        "text": "How are emergency production changes (hotfixes) handled while maintaining compliance controls?"
+      },
+      {
+        "num": "2.20",
+        "priority": "CRITICAL",
+        "text": "What is your historical system uptime/availability percentage over the past 12 months? Provide SLA commitments and remedies for breaches."
+      },
+      {
+        "num": "2.21",
+        "priority": "CRITICAL",
+        "text": "Describe your disaster recovery and business continuity capabilities: RPO (Recovery Point Objective), RTO (Recovery Time Objective), Backup frequency and retention, Geographic redundancy"
+      },
+      {
+        "num": "2.22",
+        "priority": "CRITICAL",
+        "text": "Describe your vulnerability management program including: penetration testing frequency, third-party security audits, and incident response procedures."
+      }
+    ]
+  },
+  {
+    "section_num": 3,
+    "section_title": "Implementation & Support",
+    "questions": [
+      {
+        "num": "3.01",
+        "priority": "HIGH",
+        "text": "Describe your standard implementation methodology and typical timeline for a company of SelectQuote's size and complexity (~1,500 users, complex commission plans, multiple business units)."
+      },
+      {
+        "num": "3.02",
+        "priority": "HIGH",
+        "text": "What percentage of your implementations are delivered by: Your direct professional services team, Certified implementation partners, Customer self-implementation with vendor guidance"
+      },
+      {
+        "num": "3.03",
+        "priority": "HIGH",
+        "text": "Provide a detailed breakdown of implementation phases, key milestones, and deliverables. Include estimated duration for each phase."
+      },
+      {
+        "num": "3.04",
+        "priority": "HIGH",
+        "text": "What resources are required from the client during implementation? Provide a RACI matrix showing vendor vs. client responsibilities."
+      },
+      {
+        "num": "3.05",
+        "priority": "HIGH",
+        "text": "What implementation accelerators, templates, or pre-built configurations do you provide to reduce time-to-value?"
+      },
+      {
+        "num": "3.06",
+        "priority": "HIGH",
+        "text": "Describe your implementation support model: Support tiers available (if applicable), Standard support hours and extended coverage options, Support channels (phone, email, chat, portal)"
+      },
+      {
+        "num": "3.07",
+        "priority": "CRITICAL",
+        "text": "Describe your approach to data migration from legacy systems: What tools and processes are used? Who is responsible for data mapping and transformation? How is data validated and reconciled?"
+      },
+      {
+        "num": "3.08",
+        "priority": "HIGH",
+        "text": "What testing approach do you recommend? (unit testing, integration testing, UAT, parallel processing) What testing tools are provided?"
+      },
+      {
+        "num": "3.09",
+        "priority": "HIGH",
+        "text": "What warranty do you provide for defects found post implementation?"
+      },
+      {
+        "num": "3.10",
+        "priority": "CRITICAL",
+        "text": "Describe your knowledge transfer and enablement approach: How do you ensure client teams can independently maintain and configure the system post-implementation? What training is included in standard implementation?"
+      },
+      {
+        "num": "3.11",
+        "priority": "MEDIUM",
+        "text": "What training delivery methods do you offer? (in-person, virtual instructor-led, self-paced online, train-the-trainer)"
+      },
+      {
+        "num": "3.12",
+        "priority": "HIGH",
+        "text": "How is training tailored to different personas? (system administrators, business analysts, end users, executives)"
+      },
+      {
+        "num": "3.13",
+        "priority": "MEDIUM",
+        "text": "Do you provide on-going training support?"
+      },
+      {
+        "num": "3.14",
+        "priority": "CRITICAL",
+        "text": "Describe your support model: Support tiers available (if applicable), Standard support hours and extended coverage options, Support channels (phone, email, chat, portal)"
+      },
+      {
+        "num": "3.15",
+        "priority": "CRITICAL",
+        "text": "What are your SLAs for different severity levels? How do you define Severity 1 (critical) vs. lower severity issues?"
+      },
+      {
+        "num": "3.16",
+        "priority": "CRITICAL",
+        "text": "How do you handle support during critical processing windows? (month-end, quarter-end, year-end) Can we request dedicated support coverage during these periods?"
+      },
+      {
+        "num": "3.17",
+        "priority": "CRITICAL",
+        "text": "Describe your system monitoring and performance visibility capabilities - What monitoring dashboards or tools are provided to track calculation performance, processing times, and system health?"
+      },
+      {
+        "num": "3.18",
+        "priority": "HIGH",
+        "text": "What customer success resources are provided? (dedicated CSM, account manager, technical account manager) At what frequency do you conduct business reviews?"
+      },
+      {
+        "num": "3.19",
+        "priority": "HIGH",
+        "text": "Do you regular meet with your customers? If so, what is the standard cadence to meet & what does that meeting look like?"
+      },
+      {
+        "num": "3.20",
+        "priority": "MEDIUM",
+        "text": "What self-service support resources exist? (knowledge base, community forums, training portal, API documentation)"
+      }
+    ]
+  },
+  {
+    "section_num": 4,
+    "section_title": "Platform Features",
+    "questions": [
+      {
+        "num": "4.01",
+        "priority": "CRITICAL",
+        "text": "Who can configure compensation plans in your solution? Can business users (non-technical) configure standard plans independently? What tasks require technical resources or vendor assistance?"
+      },
+      {
+        "num": "4.02",
+        "priority": "HIGH",
+        "text": "Describe your plan configuration interface. Is it: Visual/drag-and-drop, Formula/expression-based, Code/script-based, Combination of the above"
+      },
+      {
+        "num": "4.03",
+        "priority": "HIGH",
+        "text": "What is the typical turnaround time to configure a new standard commission plan? What about complex plans with multiple tiers, splits, and overrides?"
+      },
+      {
+        "num": "4.04",
+        "priority": "HIGH",
+        "text": "Clearly differentiate between: Changes business users can make, Changes requiring technical skills but not source code, Changes requiring source code modification"
+      },
+      {
+        "num": "4.05",
+        "priority": "HIGH",
+        "text": "How are plan configuration changes version-controlled? Can you compare different versions and roll back if needed?"
+      },
+      {
+        "num": "4.06",
+        "priority": "HIGH",
+        "text": "Do you provide pre-built plan templates or accelerators? What plan types are included?"
+      },
+      {
+        "num": "4.07",
+        "priority": "CRITICAL",
+        "text": "What compensation plan types does your solution support? Rate your capability (Native/Configuration/Customization/Not Supported) for: Tiered/threshold commissions, Revenue-based commissions, Unit/volume-based commissions"
+      },
+      {
+        "num": "4.08",
+        "priority": "CRITICAL",
+        "text": "Describe how your solution handles: Commission splits across multiple participants, Multi-level hierarchical overrides, Time-based proration (mid-period starts, quota relief, leaves of absence)"
+      },
+      {
+        "num": "4.09",
+        "priority": "CRITICAL",
+        "text": "How does your solution handle negative commissions, clawbacks, and chargebacks?"
+      },
+      {
+        "num": "4.10",
+        "priority": "HIGH",
+        "text": "What advanced calculation features are supported? Accelerators and decelerators, Commission caps and floors, Guaranteed minimums, Performance multipliers"
+      },
+      {
+        "num": "4.11",
+        "priority": "CRITICAL",
+        "text": "Can your solution apply different calculation logic based on: Participant role or level, Geographic region, Product type or category, Time period or seasonality"
+      },
+      {
+        "num": "4.12",
+        "priority": "HIGH",
+        "text": "How does your solution handle plan changes mid-period? (quota adjustments, rate changes, territory reassignments)"
+      },
+      {
+        "num": "4.13",
+        "priority": "CRITICAL",
+        "text": "What testing capabilities exist for validating calculations before production deployment? Can users test plan changes without impacting production data?"
+      },
+      {
+        "num": "4.14",
+        "priority": "CRITICAL",
+        "text": "Describe your calculation audit trail capabilities: What level of detail is captured? Can users trace exactly how a specific commission amount was calculated?"
+      },
+      {
+        "num": "4.15",
+        "priority": "HIGH",
+        "text": "Does your solution include automated validation or error detection for plan configurations? (e.g., detecting circular references, missing required fields, logic conflicts)"
+      },
+      {
+        "num": "4.16",
+        "priority": "CRITICAL",
+        "text": "What is the maximum transaction volume your solution can process in a single calculation cycle? Provide examples from current customers with similar or greater volumes"
+      },
+      {
+        "num": "4.17",
+        "priority": "HIGH",
+        "text": "How does your solution handle late-arriving or corrected transaction data? Can you reprocess specific transactions without full recalculation?"
+      },
+      {
+        "num": "4.18",
+        "priority": "MEDIUM",
+        "text": "Describe your extension points and API capabilities for custom functionality: What APIs are available? (REST, SOAP, GraphQL) What can be extended or customized via APIs?"
+      },
+      {
+        "num": "4.19",
+        "priority": "HIGH",
+        "text": "How are customizations managed through product upgrades? What happens to custom code or configurations when you release major updates?"
+      },
+      {
+        "num": "4.20",
+        "priority": "MEDIUM",
+        "text": "Do you have a partner ecosystem or marketplace for pre-built extensions or integrations?"
+      },
+      {
+        "num": "4.21",
+        "priority": "CRITICAL",
+        "text": "Describe the commission statement experience for sales representatives: What information is displayed? Can reports be customized based on user attributes?"
+      },
+      {
+        "num": "4.22",
+        "priority": "CRITICAL",
+        "text": "How quickly are commission statements available after calculation runs complete? Is data available in real-time, same-day, or next-day?"
+      },
+      {
+        "num": "4.23",
+        "priority": "HIGH",
+        "text": "How does your solution explain calculation methodologies to agents? Can agents see which transactions contributed to their earnings?"
+      },
+      {
+        "num": "4.24",
+        "priority": "HIGH",
+        "text": "What export and delivery options exist for commission statements? Formats: PDF, Excel, CSV, Google Sheets, etc."
+      },
+      {
+        "num": "4.25",
+        "priority": "MEDIUM",
+        "text": "Is the solution accessible via mobile? (responsive web vs. native mobile app) What functionality is available on mobile?"
+      },
+      {
+        "num": "4.26",
+        "priority": "HIGH",
+        "text": "Can business users create and modify reports independently without IT or vendor assistance? Describe the report building interface"
+      },
+      {
+        "num": "4.27",
+        "priority": "CRITICAL",
+        "text": "What standard reports are included with your solution? Provide a report catalog covering: Commission expense by period, business unit, plan type"
+      },
+      {
+        "num": "4.28",
+        "priority": "CRITICAL",
+        "text": "Describe ad-hoc reporting and data exploration capabilities: Can users build custom queries without predefined reports?"
+      },
+      {
+        "num": "4.29",
+        "priority": "HIGH",
+        "text": "What data visualization options are available? Chart types: bar, line, pie, heatmap, etc."
+      },
+      {
+        "num": "4.30",
+        "priority": "HIGH",
+        "text": "How does your solution handle large datasets and report performance? What is the maximum record count for reports?"
+      },
+      {
+        "num": "4.31",
+        "priority": "MEDIUM",
+        "text": "What scheduled reporting and distribution capabilities exist? Can reports be automatically generated and emailed on a schedule?"
+      },
+      {
+        "num": "4.32",
+        "priority": "CRITICAL",
+        "text": "Describe role-based reporting security: Can report access be restricted by user role, business unit, or geography?"
+      },
+      {
+        "num": "4.33",
+        "priority": "MEDIUM",
+        "text": "Does your solution integrate with external BI tools? (Amazon Quick Suite, etc.) What integration methods are supported?"
+      },
+      {
+        "num": "4.34",
+        "priority": "MEDIUM",
+        "text": "What predictive analytics or forecasting capabilities exist? Can the solution project future commission expense based on pipeline?"
+      },
+      {
+        "num": "4.35",
+        "priority": "HIGH",
+        "text": "What AI/ML-powered analytics features are available or planned? Anomaly detection for unusual payouts"
+      },
+      {
+        "num": "4.36",
+        "priority": "HIGH",
+        "text": "What data integration methods does your solution support? Real-time APIs (REST, SOAP, GraphQL), Batch file uploads (SFTP, cloud storage)"
+      },
+      {
+        "num": "4.37",
+        "priority": "CRITICAL",
+        "text": "What is your approach to data refresh and latency? How frequently can data be refreshed from source systems?"
+      },
+      {
+        "num": "4.38",
+        "priority": "CRITICAL",
+        "text": "What pre-built integrations or connectors do you offer? CRM systems (Salesforce, Microsoft Dynamics, etc.)"
+      },
+      {
+        "num": "4.39",
+        "priority": "CRITICAL",
+        "text": "Describe your data validation and quality management capabilities: What validation occurs during data ingestion?"
+      },
+      {
+        "num": "4.40",
+        "priority": "CRITICAL",
+        "text": "Describe your rollback and recovery capabilities if a data file or configuration change causes errors. Can you rollback to a previous state without full system restore?"
+      },
+      {
+        "num": "4.41",
+        "priority": "CRITICAL",
+        "text": "How does your solution handle master data management? Accounts, territories, hierarchies, product catalogs"
+      },
+      {
+        "num": "4.42",
+        "priority": "CRITICAL",
+        "text": "Describe manual adjustment capabilities: One-time payments or corrections, Bulk adjustments via file upload"
+      },
+      {
+        "num": "4.43",
+        "priority": "HIGH",
+        "text": "What bulk data operations are supported? Bulk participant updates, Bulk territory/hierarchy changes, Bulk plan enrollment"
+      },
+      {
+        "num": "4.44",
+        "priority": "CRITICAL",
+        "text": "How does your solution handle data reconciliation? Can you compare imported data against expected values?"
+      },
+      {
+        "num": "4.45",
+        "priority": "HIGH",
+        "text": "Describe your API capabilities in detail: What data and operations are accessible via API?"
+      },
+      {
+        "num": "4.46",
+        "priority": "MEDIUM",
+        "text": "Can your solution integrate with workflow or notification systems? Google Chat, Slack, Microsoft Teams"
+      },
+      {
+        "num": "4.47",
+        "priority": "CRITICAL",
+        "text": "Describe your dispute and inquiry management capabilities: How do participants submit commission disputes or questions?"
+      },
+      {
+        "num": "4.48",
+        "priority": "HIGH",
+        "text": "What approval workflow capabilities exist? What business processes can be routed for approval?"
+      },
+      {
+        "num": "4.49",
+        "priority": "HIGH",
+        "text": "What notification and alerting capabilities exist? Notification methods and channels: banner messages, email, in-app, SMS, push notifications"
+      },
+      {
+        "num": "4.50",
+        "priority": "HIGH",
+        "text": "Describe the overall user experience and interface design: Is the interface modern and intuitive?"
+      },
+      {
+        "num": "4.51",
+        "priority": "CRITICAL",
+        "text": "What self-service capabilities exist for end users? View commission statements and transaction detail"
+      }
+    ]
+  },
+  {
+    "section_num": 5,
+    "section_title": "Pricing & Commercial Terms",
+    "questions": [
+      {
+        "num": "5.01",
+        "priority": "CRITICAL",
+        "text": "Describe your pricing model in detail: Subscription-based, user-based, transaction-based, or combination?"
+      },
+      {
+        "num": "5.02",
+        "priority": "CRITICAL",
+        "text": "Provide a detailed cost breakdown for SelectQuote based on: ~Range of 1000 - 3000 (sales reps, managers, finance/ops, administrators), ~500k commission transactions per month average"
+      },
+      {
+        "num": "5.03",
+        "priority": "CRITICAL",
+        "text": "What is included in the base subscription/license fee? Software access for how many environments?"
+      },
+      {
+        "num": "5.04",
+        "priority": "CRITICAL",
+        "text": "What additional costs should we anticipate beyond base licensing? Implementation and professional services, Training (initial and ongoing)"
+      },
+      {
+        "num": "5.05",
+        "priority": "CRITICAL",
+        "text": "What is your typical contract term and payment structure? Minimum commitment period, Payment schedule (annual, quarterly, monthly)"
+      },
+      {
+        "num": "5.06",
+        "priority": "HIGH",
+        "text": "What happens if we exceed licensed volumes? User overages, Transaction overages, Storage overages"
+      },
+      {
+        "num": "5.07",
+        "priority": "HIGH",
+        "text": "What are your professional services rates for post-implementation work? Hourly rates for different role types (consultant, developer, architect)"
+      },
+      {
+        "num": "5.08",
+        "priority": "HIGH",
+        "text": "Describe any volume discounts, enterprise pricing, or bundling options available."
+      },
+      {
+        "num": "5.09",
+        "priority": "MEDIUM",
+        "text": "What are your termination and data portability terms? Notice period required for termination, Data export capabilities and formats"
+      },
+      {
+        "num": "5.10",
+        "priority": "MEDIUM",
+        "text": "What payment terms do you offer? (Net 30, Net 60, etc.) Are there early payment discounts?"
+      }
+    ]
+  }
+]
