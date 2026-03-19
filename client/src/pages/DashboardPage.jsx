@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { rfpAPI, exportAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import SectionNavigation from '../components/SectionNavigation';
 import SectionView from '../components/SectionView';
 
 export default function DashboardPage() {
