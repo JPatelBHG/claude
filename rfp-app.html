@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SelectQuote RFP Response</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div id="app"></div>
+
+    <script>
+        // ==================== DATA ====================
+        const RFP_DATA = [
+            {
+                section_num: 1,
+                section_title: "Company & Vendor Overview",
+                questions: [
+                    { num: "1.01", priority: "HIGH", text: "Provide company history including: year founded, headquarters location, ownership structure (public/private/PE-backed), number of employees, and annual revenue range." },
+                    { num: "1.02", priority: "MEDIUM", text: "How many active ICM customers do you currently serve? Provide breakdown by: company size (SMB/Mid-Market/Enterprise/Public), industry verticals, and geographic regions." },
+                    { num: "1.03", priority: "HIGH", text: "Provide 3 customer references from companies similar to SelectQuote in size, complexity, or industry. Include: company name, contact information, implementation date, plan complexity overview, and current user count." },
+                    { num: "1.04", priority: "HIGH", text: "Describe a success story where a customer replaced a legacy or high-risk ICM system with your solution. What were their pain points and measurable outcomes achieved?" },
+                    { num: "1.05", priority: "HIGH", text: "What percentage of your annual revenue is invested in R&D? How many engineers are dedicated to the ICM product?" },
+                    { num: "1.06", priority: "HIGH", text: "Describe your product vision and strategic roadmap for the next 24 months. What major capabilities are planned or in development?" },
+                    { num: "1.07", priority: "MEDIUM", text: "What is your typical release cadence? How do you communicate and deploy updates to customers?" },
+                    { num: "1.08", priority: "HIGH", text: "Have any customers churned in the past 24 months? What were the primary reasons for departure?" },
+                    { num: "1.09", priority: "HIGH", text: "What industry recognitions, analyst rankings, or certifications has your company earned?" },
+                    { num: "1.10", priority: "MEDIUM", text: "Describe any recent or planned mergers, acquisitions, or significant organizational changes that could impact product development or customer support." },
+                    { num: "1.11", priority: "MEDIUM", text: "What is your average customer tenure?" }
+                ]
+            },
+            {
+                section_num: 2,
+                section_title: "Security & Compliance",
+                questions: [
+                    { num: "2.01", priority: "CRITICAL", text: "What authentication mechanisms does your solution support? (SSO - Google Authentication) Describe implementation requirements." },
+                    { num: "2.02", priority: "CRITICAL", text: "Describe your role-based access control model. Can permissions be configured at the object, field, and record level?" },
+                    { num: "2.03", priority: "CRITICAL", text: "How does your solution enforce segregation of duties for system administration, calculation configuration, and data management?" },
+                    { num: "2.04", priority: "CRITICAL", text: "Describe your user provisioning and de-provisioning processes. What automation or integration options exist with identity management systems?" },
+                    { num: "2.05", priority: "CRITICAL", text: "Describe your data encryption approach: Encryption at rest (algorithms, key management), Encryption in transit (protocols, certificate management), Database-level encryption capabilities" }
+                ]
+            },
+            {
+                section_num: 3,
+                section_title: "Implementation & Support",
+                questions: [
+                    { num: "3.01", priority: "HIGH", text: "Describe your standard implementation methodology and typical timeline for a company of SelectQuote's size and complexity (~1,500 users, complex commission plans, multiple business units)." },
+                    { num: "3.02", priority: "HIGH", text: "What percentage of your implementations are delivered by: Your direct professional services team, Certified implementation partners, Customer self-implementation with vendor guidance" },
+                    { num: "3.03", priority: "HIGH", text: "Provide a detailed breakdown of implementation phases, key milestones, and deliverables. Include estimated duration for each phase." },
+                    { num: "3.04", priority: "HIGH", text: "What resources are required from the client during implementation? Provide a RACI matrix showing vendor vs. client responsibilities." },
+                    { num: "3.05", priority: "HIGH", text: "What implementation accelerators, templates, or pre-built configurations do you provide to reduce time-to-value?" }
+                ]
+            },
+            {
+                section_num: 4,
+                section_title: "Platform Features",
+                questions: [
+                    { num: "4.01", priority: "CRITICAL", text: "Who can configure compensation plans in your solution? Can business users (non-technical) configure standard plans independently? What tasks require technical resources or vendor assistance?" },
+                    { num: "4.02", priority: "HIGH", text: "Describe your plan configuration interface. Is it: Visual/drag-and-drop, Formula/expression-based, Code/script-based, Combination of the above" },
+                    { num: "4.03", priority: "HIGH", text: "What is the typical turnaround time to configure a new standard commission plan? What about complex plans with multiple tiers, splits, and overrides?" },
+                    { num: "4.04", priority: "HIGH", text: "Clearly differentiate between: Changes business users can make, Changes requiring technical skills but not source code, Changes requiring source code modification" },
+                    { num: "4.05", priority: "HIGH", text: "How are plan configuration changes version-controlled? Can you compare different versions and roll back if needed?" }
+                ]
+            },
+            {
+                section_num: 5,
+                section_title: "Pricing & Commercial Terms",
+                questions: [
+                    { num: "5.01", priority: "CRITICAL", text: "Describe your pricing model in detail: Subscription-based, user-based, transaction-based, or combination?" },
+                    { num: "5.02", priority: "CRITICAL", text: "Provide a detailed cost breakdown for SelectQuote based on: ~Range of 1000 - 3000 (sales reps, managers, finance/ops, administrators), ~500k commission transactions per month average" },
+                    { num: "5.03", priority: "CRITICAL", text: "What is included in the base subscription/license fee? Software access for how many environments?" },
+                    { num: "5.04", priority: "CRITICAL", text: "What additional costs should we anticipate beyond base licensing? Implementation and professional services, Training (initial and ongoing)" },
+                    { num: "5.05", priority: "CRITICAL", text: "What is your typical contract term and payment structure? Minimum commitment period, Payment schedule (annual, quarterly, monthly)" }
+                ]
+            }
+        ];
+
+        // ==================== STATE ====================
+        let appState = {
+            currentUser: null,
+            responses: {},
+            currentSection: 1,
+            showModal: false,
+            modalType: null
+        };
+
+        // Load state from localStorage
+        function loadState() {
+            const saved = localStorage.getItem('rfpState');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                appState.currentUser = parsed.currentUser;
+                appState.responses = parsed.responses || {};
+            }
+        }
+
+        // Save state to localStorage
+        function saveState() {
+            localStorage.setItem('rfpState', JSON.stringify({
+                currentUser: appState.currentUser,
+                responses: appState.responses
+            }));
+        }
+
+        // ==================== AUTH ====================
+        function login(email, password) {
+            if (email && password) {
+                appState.currentUser = { email };
+                if (!appState.responses[email]) {
+                    appState.responses[email] = {};
+                }
+                saveState();
+                render();
+                return true;
+            }
+            return false;
+        }
+
+        function register(email, password, confirmPassword) {
+            if (password !== confirmPassword) {
+                alert("Passwords don't match");
+                return false;
+            }
+            if (email && password) {
+                appState.currentUser = { email };
+                appState.responses[email] = {};
+                saveState();
+                render();
+                return true;
+            }
+            return false;
+        }
+
+        function logout() {
+            appState.currentUser = null;
+            render();
+        }
+
+        // ==================== RESPONSE HANDLING ====================
+        function saveResponse(questionNum, answer) {
+            if (!appState.currentUser) return;
+            if (!appState.responses[appState.currentUser.email]) {
+                appState.responses[appState.currentUser.email] = {};
+            }
+            appState.responses[appState.currentUser.email][questionNum] = answer;
+            saveState();
+        }
+
+        function getResponse(questionNum) {
+            if (!appState.currentUser) return '';
+            return appState.responses[appState.currentUser.email]?.[questionNum] || '';
+        }
+
+        // ==================== EXPORT ====================
+        function exportAsJSON() {
+            if (!appState.currentUser) return;
+            const data = {
+                user: appState.currentUser.email,
+                exportDate: new Date().toISOString(),
+                responses: appState.responses[appState.currentUser.email]
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            downloadFile(blob, 'rfp-responses.json');
+        }
+
+        function exportAsCSV() {
+            if (!appState.currentUser) return;
+            const responses = appState.responses[appState.currentUser.email];
+            let csv = 'Question Number,Question Text,Priority,Response\n';
+
+            RFP_DATA.forEach(section => {
+                section.questions.forEach(q => {
+                    const response = responses[q.num] || '';
+                    const responseEscaped = `"${response.replace(/"/g, '""')}"`;
+                    const textEscaped = `"${q.text.replace(/"/g, '""')}"`;
+                    csv += `${q.num},${textEscaped},${q.priority},${responseEscaped}\n`;
+                });
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            downloadFile(blob, 'rfp-responses.csv');
+        }
+
+        function downloadFile(blob, filename) {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        // ==================== RENDERING ====================
+        function html(strings, ...values) {
+            return strings.reduce((acc, str, i) => acc + str + (values[i] || ''), '');
+        }
+
+        function renderLoginPage() {
+            return html`
+                <div class="min-h-screen bg-gradient-to-br from-indigo-600 to-indigo-800 flex items-center justify-center p-4">
+                    <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-8">
+                        <div class="text-center mb-8">
+                            <h1 class="text-3xl font-bold text-gray-900">SelectQuote</h1>
+                            <p class="text-gray-600 mt-2">RFP Response Platform</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input id="loginEmail" type="email" placeholder="your@email.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                                <input id="loginPassword" type="password" placeholder="••••••••" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                            </div>
+                            <button onclick="handleLogin()" class="w-full bg-indigo-600 text-white py-2 rounded-lg font-medium hover:bg-indigo-700 transition">
+                                Login
+                            </button>
+                            <button onclick="showRegister()" class="w-full text-indigo-600 py-2 rounded-lg font-medium hover:bg-indigo-50 transition">
+                                Create New Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRegisterPage() {
+            return html`
+                <div class="min-h-screen bg-gradient-to-br from-indigo-600 to-indigo-800 flex items-center justify-center p-4">
+                    <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-8">
+                        <div class="text-center mb-8">
+                            <h1 class="text-3xl font-bold text-gray-900">Create Account</h1>
+                            <p class="text-gray-600 mt-2">RFP Response Platform</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input id="regEmail" type="email" placeholder="your@email.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                                <input id="regPassword" type="password" placeholder="••••••••" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                                <input id="regConfirm" type="password" placeholder="••••••••" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                            </div>
+                            <button onclick="handleRegister()" class="w-full bg-indigo-600 text-white py-2 rounded-lg font-medium hover:bg-indigo-700 transition">
+                                Create Account
+                            </button>
+                            <button onclick="showLogin()" class="w-full text-indigo-600 py-2 rounded-lg font-medium hover:bg-indigo-50 transition">
+                                Back to Login
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderDashboard() {
+            const section = RFP_DATA[appState.currentSection - 1];
+            const responses = appState.responses[appState.currentUser.email] || {};
+            const completedCount = section.questions.filter(q => responses[q.num]).length;
+            const totalCount = section.questions.length;
+            const progress = Math.round((completedCount / totalCount) * 100);
+
+            return html`
+                <div class="min-h-screen bg-gray-50">
+                    <!-- Header -->
+                    <header class="bg-white shadow">
+                        <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+                            <div>
+                                <h1 class="text-3xl font-bold text-gray-900">SelectQuote RFP Response</h1>
+                                <p class="text-gray-600 mt-1">Logged in as: ${appState.currentUser.email}</p>
+                            </div>
+                            <button onclick="logout()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+                                Logout
+                            </button>
+                        </div>
+                    </header>
+
+                    <div class="max-w-7xl mx-auto px-4 py-8">
+                        <div class="grid grid-cols-4 gap-4 mb-8">
+                            <!-- Sections Navigation -->
+                            ${RFP_DATA.map(s => html`
+                                <button
+                                    onclick="appState.currentSection = ${s.section_num}; render()"
+                                    class="p-4 rounded-lg text-center transition ${appState.currentSection === s.section_num ? 'bg-indigo-600 text-white shadow-lg' : 'bg-white text-gray-900 hover:shadow-md'}"
+                                >
+                                    <div class="font-bold">Section ${s.section_num}</div>
+                                    <div class="text-sm mt-2">${s.section_title}</div>
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Current Section -->
+                        <div class="bg-white rounded-lg shadow mb-8 p-8">
+                            <div class="mb-6">
+                                <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                    Section ${section.section_num}: ${section.section_title}
+                                </h2>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: ${progress}%"></div>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">${completedCount} of ${totalCount} questions answered (${progress}%)</p>
+                            </div>
+
+                            <!-- Questions -->
+                            <div class="space-y-8">
+                                ${section.questions.map(q => html`
+                                    <div class="border-l-4 ${q.priority === 'CRITICAL' ? 'border-red-600' : q.priority === 'HIGH' ? 'border-orange-600' : 'border-blue-600'} pl-6 py-4 bg-gray-50 rounded">
+                                        <div class="flex items-start justify-between mb-3">
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">${q.num}</h3>
+                                                <p class="text-gray-700 mt-2">${q.text}</p>
+                                            </div>
+                                            <span class="px-3 py-1 rounded-full text-xs font-bold ${q.priority === 'CRITICAL' ? 'bg-red-100 text-red-800' : q.priority === 'HIGH' ? 'bg-orange-100 text-orange-800' : 'bg-blue-100 text-blue-800'}">
+                                                ${q.priority}
+                                            </span>
+                                        </div>
+                                        <textarea
+                                            placeholder="Enter your response..."
+                                            onchange="saveResponse('${q.num}', this.value)"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 min-h-32"
+                                        >${getResponse(q.num)}</textarea>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Export Options -->
+                        <div class="bg-white rounded-lg shadow p-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Export Responses</h3>
+                            <div class="flex gap-4">
+                                <button onclick="exportAsJSON()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                                    Export as JSON
+                                </button>
+                                <button onclick="exportAsCSV()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+                                    Export as CSV
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function render() {
+            const app = document.getElementById('app');
+            if (!appState.currentUser) {
+                app.innerHTML = appState.modalType === 'register' ? renderRegisterPage() : renderLoginPage();
+            } else {
+                app.innerHTML = renderDashboard();
+            }
+        }
+
+        // ==================== EVENT HANDLERS ====================
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            if (login(email, password)) {
+                appState.modalType = null;
+            }
+        }
+
+        function handleRegister() {
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+            if (register(email, password, confirm)) {
+                appState.modalType = null;
+            }
+        }
+
+        function showRegister() {
+            appState.modalType = 'register';
+            render();
+        }
+
+        function showLogin() {
+            appState.modalType = 'login';
+            render();
+        }
+
+        // ==================== INIT ====================
+        loadState();
+        render();
+    </script>
+</body>
+</html>
